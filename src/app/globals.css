@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+/* ============================================
+   use.moema Design System
+   Brand: White #FFFFFF / Black #000000 / Steel #BCBFCC
+   Font: Inter only
+   ============================================ */
+
+@theme inline {
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-steel: #BCBFCC;
+  --color-steel-5: rgba(188, 191, 204, 0.05);
+  --color-steel-10: rgba(188, 191, 204, 0.10);
+  --color-steel-12: rgba(188, 191, 204, 0.12);
+  --color-steel-18: rgba(188, 191, 204, 0.18);
+  --color-steel-20: rgba(188, 191, 204, 0.20);
+  --color-steel-40: rgba(188, 191, 204, 0.40);
+  --color-steel-60: rgba(188, 191, 204, 0.60);
+
+  --color-background: #FFFFFF;
+  --color-foreground: #000000;
+
+  --font-sans: var(--font-inter);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ============================================
+   Base
+   ============================================ */
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Liquid Glass (BRD-003)
+   ============================================ */
+
+.glass {
+  background: rgba(188, 191, 204, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(188, 191, 204, 0.18);
+}
+
+.glass-strong {
+  background: rgba(188, 191, 204, 0.22);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(188, 191, 204, 0.25);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   Typography Scale — Dramatic Contrasts
+   ============================================ */
+
+.text-display {
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+
+.text-h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 250;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.text-h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.text-h3 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.text-body {
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.7;
+}
+
+.text-caption {
+  font-size: clamp(0.6875rem, 0.9vw, 0.75rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Mega numbers — for data-driven sections */
+.text-mega {
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 150;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+}
+
+/* ============================================
+   Noise Texture Overlay
+   ============================================ */
+
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.noise-strong::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ============================================
+   Horizontal Rule — Editorial
+   ============================================ */
+
+.rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(188, 191, 204, 0.4), transparent);
+}
+
+.rule-dark {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+/* ============================================
+   Scroll Indicator
+   ============================================ */
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+
+.scroll-indicator {
+  animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+/* ============================================
+   Clip-path Button Mask
+   ============================================ */
+
+.btn-mask {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .btn-mask {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ============================================
+   Underline Hover
+   ============================================ */
+
+.hover-underline {
+  position: relative;
+}
+
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ============================================
+   Selection & Reduced Motion
+   ============================================ */
+
+::selection {
+  background: rgba(188, 191, 204, 0.3);
+  color: #000000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
