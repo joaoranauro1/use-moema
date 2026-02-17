@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { useForm } from "react-hook-form";
+import Image from "next/image";
 
 /* ─── Types ─── */
 interface InterestModalProps {
@@ -22,7 +23,7 @@ interface FormData {
 /* ─── Constants ─── */
 const STEPS = [
   { id: "contact", label: "Contato" },
-  { id: "motivation", label: "Motivação" },
+  { id: "motivation", label: "Intenção de compra" },
   { id: "budget", label: "Investimento" },
 ] as const;
 
@@ -30,6 +31,16 @@ const MOTIVATIONS = [
   { value: "moradia", label: "Moradia" },
   { value: "investimento", label: "Investimento" },
 ] as const;
+
+/* ─── Phone mask helper ─── */
+function formatPhone(value: string): string {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 2) return digits.length ? `(${digits}` : "";
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 10)
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+}
 
 const BUDGETS = [
   { value: "ate-500k", label: "Até R$ 500 mil" },
@@ -249,7 +260,13 @@ export function InterestModal({ open, onClose }: InterestModalProps) {
                     ease: [0.16, 1, 0.3, 1],
                   }}
                 >
-                  <div className="rule-dark w-12 mb-8" />
+                  <Image
+                    src="/logos/use-moema-branco.svg"
+                    alt="use.moema"
+                    width={140}
+                    height={32}
+                    className="mb-8"
+                  />
                   <h3 className="text-h1 text-white">Obrigado.</h3>
                   <p className="text-body text-white/40 mt-4 text-center max-w-xs">
                     Nossa equipe entrará em contato em breve.
@@ -345,9 +362,18 @@ export function InterestModal({ open, onClose }: InterestModalProps) {
                                 <input
                                   {...register("phone", {
                                     required: "Telefone é obrigatório",
+                                    pattern: {
+                                      value: /^\(\d{2}\)\s\d{4,5}-\d{4}$/,
+                                      message: "Formato: (11) 99999-9999",
+                                    },
                                   })}
                                   type="tel"
                                   placeholder="Telefone"
+                                  maxLength={15}
+                                  onChange={(e) => {
+                                    const formatted = formatPhone(e.target.value);
+                                    setValue("phone", formatted, { shouldValidate: !!errors.phone });
+                                  }}
                                   className="w-full bg-transparent border-b border-white/10 py-3.5 text-sm text-white placeholder:text-white/25 focus:border-white focus:outline-none transition-colors duration-500"
                                 />
                                 {errors.phone && (
@@ -373,7 +399,7 @@ export function InterestModal({ open, onClose }: InterestModalProps) {
                           >
                             <div>
                               <h3 className="text-h3 text-white mb-1">
-                                Qual sua motivação?
+                                Qual sua intenção de compra?
                               </h3>
                               <p className="text-sm text-white/30">
                                 Selecione uma ou ambas as opções.

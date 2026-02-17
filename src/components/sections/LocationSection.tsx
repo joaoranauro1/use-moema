@@ -8,7 +8,11 @@ import { DISTANCES, ADDRESS } from "@/lib/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function LocationSection() {
+interface LocationSectionProps {
+  onInterestClick: () => void;
+}
+
+export function LocationSection({ onInterestClick }: LocationSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -101,6 +105,14 @@ export function LocationSection() {
             <p className="text-xs text-black/25 mt-8">
               Demanda estrutural sustentada por compactos bem localizados.
             </p>
+            <div className="mt-12 flex justify-center lg:justify-start">
+              <button
+                onClick={onInterestClick}
+                className="border border-black px-10 py-3.5 text-xs font-medium tracking-[0.08em] uppercase text-black hover:bg-black hover:text-white transition-colors duration-300 cursor-pointer"
+              >
+                Tenho Interesse
+              </button>
+            </div>
           </div>
         </div>
       </div>

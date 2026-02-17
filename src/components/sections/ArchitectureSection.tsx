@@ -30,7 +30,11 @@ const GRID_IMAGES = [
   },
 ];
 
-export function ArchitectureSection() {
+interface ArchitectureSectionProps {
+  onInterestClick: () => void;
+}
+
+export function ArchitectureSection({ onInterestClick }: ArchitectureSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -135,6 +139,15 @@ export function ArchitectureSection() {
               <p className="text-xs text-black/35 leading-relaxed">{f.desc}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 md:mt-24 flex justify-center">
+          <button
+            onClick={onInterestClick}
+            className="border border-black px-10 py-3.5 text-xs font-medium tracking-[0.08em] uppercase text-black hover:bg-black hover:text-white transition-colors duration-300 cursor-pointer"
+          >
+            Tenho Interesse
+          </button>
         </div>
       </div>
     </section>

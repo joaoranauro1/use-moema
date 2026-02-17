@@ -20,12 +20,12 @@ export default function Home() {
       <Header onInterestClick={() => setInterestOpen(true)} />
       <main>
         <HeroSection />
-        <LocationSection />
+        <LocationSection onInterestClick={() => setInterestOpen(true)} />
         <ManifestoSection />
         <ResidencesSection />
         <InvestmentSection />
-        <AmenitiesSection />
-        <ArchitectureSection />
+        <AmenitiesSection onInterestClick={() => setInterestOpen(true)} />
+        <ArchitectureSection onInterestClick={() => setInterestOpen(true)} />
       </main>
       <Footer />
       <InterestModal

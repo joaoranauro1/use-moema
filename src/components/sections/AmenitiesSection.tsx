@@ -9,7 +9,11 @@ import { AMENITIES } from "@/lib/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function AmenitiesSection() {
+interface AmenitiesSectionProps {
+  onInterestClick: () => void;
+}
+
+export function AmenitiesSection({ onInterestClick }: AmenitiesSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -95,6 +99,14 @@ export function AmenitiesSection() {
             )}
           </div>
         ))}
+        <div className="flex-shrink-0 flex items-center justify-center px-6 py-12 lg:w-[40vw] lg:h-[75vh] lg:mr-12">
+          <button
+            onClick={onInterestClick}
+            className="border border-black px-10 py-3.5 text-xs font-medium tracking-[0.08em] uppercase text-black hover:bg-black hover:text-white transition-colors duration-300 cursor-pointer"
+          >
+            Tenho Interesse
+          </button>
+        </div>
       </div>
     </section>
   );
