@@ -18,32 +18,32 @@ export const AMENITIES = [
   {
     title: "Rooftop",
     description: "Churrasqueira, espaço social e vista para a cidade.",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+    image: "/images/amenities/rooftop.webp",
   },
   {
     title: "Academia",
     description: "Equipamentos de alta performance no rooftop.",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
+    image: "/images/amenities/academia.webp",
   },
   {
     title: "Bem-estar",
     description: "Banheiras de gelo, sauna e lounge de relaxamento.",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+    image: "/images/amenities/wellness.webp",
   },
   {
     title: "Coworking",
     description: "Espaço de trabalho e interação com conforto.",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    image: "/images/amenities/coworking.webp",
   },
   {
     title: "Lavanderia",
     description: "Lavanderia compartilhada de uso prático.",
-    image: "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=800&q=80",
+    image: "/images/amenities/lavanderia.webp",
   },
   {
     title: "Bicicletário",
     description: "Armazenamento seguro para bicicletas.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
+    image: "/images/amenities/bicicletario.webp",
   },
 ] as const;
 
