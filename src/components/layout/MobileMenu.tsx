@@ -7,9 +7,10 @@ interface MobileMenuProps {
   open: boolean;
   onClose: () => void;
   onNavClick: (href: string) => void;
+  onInterestClick: () => void;
 }
 
-export function MobileMenu({ open, onClose, onNavClick }: MobileMenuProps) {
+export function MobileMenu({ open, onClose, onNavClick, onInterestClick }: MobileMenuProps) {
   return (
     <AnimatePresence>
       {open && (
@@ -34,7 +35,7 @@ export function MobileMenu({ open, onClose, onNavClick }: MobileMenuProps) {
               </motion.button>
             ))}
             <motion.button
-              onClick={() => onNavClick("#contato")}
+              onClick={onInterestClick}
               className="mt-4 border border-white/30 px-8 py-3 text-xs font-medium tracking-[0.08em] uppercase text-white cursor-pointer"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

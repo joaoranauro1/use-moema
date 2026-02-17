@@ -4,7 +4,6 @@ export const NAV_ITEMS = [
   { label: "Investimento", href: "#investimento" },
   { label: "Áreas Comuns", href: "#amenidades" },
   { label: "Localização", href: "#localizacao" },
-  { label: "Contato", href: "#contato" },
 ] as const;
 
 export const DISTANCES = [

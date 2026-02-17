@@ -72,7 +72,7 @@ export function ResidencesSection() {
         className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden"
       >
         <Image
-          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80"
+          src="/images/residences/fachada.webp"
           alt="Interior residência use.moema"
           fill
           className="object-cover"

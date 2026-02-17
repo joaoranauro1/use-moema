@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -7,12 +10,14 @@ import { InvestmentSection } from "@/components/sections/InvestmentSection";
 import { AmenitiesSection } from "@/components/sections/AmenitiesSection";
 import { ArchitectureSection } from "@/components/sections/ArchitectureSection";
 import { LocationSection } from "@/components/sections/LocationSection";
-import { ContactSection } from "@/components/sections/ContactSection";
+import { InterestModal } from "@/components/ui/InterestModal";
 
 export default function Home() {
+  const [interestOpen, setInterestOpen] = useState(false);
+
   return (
     <>
-      <Header />
+      <Header onInterestClick={() => setInterestOpen(true)} />
       <main>
         <HeroSection />
         <LocationSection />
@@ -21,9 +26,12 @@ export default function Home() {
         <InvestmentSection />
         <AmenitiesSection />
         <ArchitectureSection />
-        <ContactSection />
       </main>
       <Footer />
+      <InterestModal
+        open={interestOpen}
+        onClose={() => setInterestOpen(false)}
+      />
     </>
   );
 }

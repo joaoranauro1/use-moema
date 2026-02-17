@@ -5,7 +5,11 @@ import Image from "next/image";
 import { NAV_ITEMS } from "@/lib/constants";
 import { MobileMenu } from "./MobileMenu";
 
-export function Header() {
+interface HeaderProps {
+  onInterestClick: () => void;
+}
+
+export function Header({ onInterestClick }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -67,7 +71,7 @@ export function Header() {
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-6">
             <button
-              onClick={() => handleNavClick("#contato")}
+              onClick={onInterestClick}
               className={`hidden text-xs font-medium tracking-[0.08em] uppercase transition-colors duration-300 cursor-pointer lg:block ${
                 scrolled
                   ? "border border-black px-6 py-2.5 text-black hover:bg-black hover:text-white"
@@ -110,6 +114,10 @@ export function Header() {
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
         onNavClick={handleNavClick}
+        onInterestClick={() => {
+          setMenuOpen(false);
+          onInterestClick();
+        }}
       />
     </>
   );
