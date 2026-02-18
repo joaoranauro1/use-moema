@@ -4,17 +4,9 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { motion } from "motion/react";
 import { Counter } from "@/components/ui/Counter";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const PAYMENT_FLOW = [
-  { label: "Sinal", value: "7%", detail: "1 parcela" },
-  { label: "Complemento", value: "4,5%", detail: "3 parcelas" },
-  { label: "Mensal", value: "2,9%", detail: "19 parcelas" },
-  { label: "Intermediárias", value: "6%", detail: "4 parcelas" },
-];
 
 export function InvestmentSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -41,23 +33,6 @@ export function InvestmentSection() {
         }
       );
 
-      const rows = sectionRef.current.querySelectorAll(".pay-row");
-      gsap.fromTo(
-        rows,
-        { opacity: 0, x: -40 },
-        {
-          opacity: 1,
-          x: 0,
-          stagger: 0.07,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: rows[0],
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
     },
     { scope: sectionRef }
   );
@@ -89,7 +64,7 @@ export function InvestmentSection() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-0 mb-24 md:mb-32">
+        <div className="grid md:grid-cols-2 gap-0">
           <div className="price-block border border-white/8 p-10 md:p-16">
             <p className="text-caption text-white/30 mb-8">use.moema</p>
             <div className="flex items-end gap-2">
@@ -106,40 +81,6 @@ export function InvestmentSection() {
             </div>
             <p className="text-caption text-white/10 mt-4">por m²</p>
           </div>
-        </div>
-
-        <motion.div
-          className="text-center mb-24 md:mb-32"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        >
-          <p className="text-caption text-white/40 mb-6">TIR Estimada</p>
-          <p className="text-h1 text-white tracking-tighter">
-            32 <span className="text-white/40">a</span> 44<span className="text-h3 text-white/50 ml-2">% a.a.</span>
-          </p>
-          <div className="rule-dark mt-8 mx-auto max-w-xs" />
-          <p className="text-xs text-white/30 mt-6 max-w-md mx-auto">
-            Estimativa por cenário. Resultados passados não garantem performance futura.
-          </p>
-        </motion.div>
-
-        <div>
-          <p className="text-caption text-white/20 mb-10">Fluxo de pagamento</p>
-          {PAYMENT_FLOW.map((item) => (
-            <div
-              key={item.label}
-              className="pay-row flex items-center justify-between border-t border-white/6 py-5 md:py-6"
-            >
-              <span className="text-sm font-light text-white/60">{item.label}</span>
-              <div className="flex items-center gap-8">
-                <span className="text-caption text-white/20 hidden md:block">{item.detail}</span>
-                <span className="text-h2 text-white font-extralight w-20 text-right tabular-nums">{item.value}</span>
-              </div>
-            </div>
-          ))}
-          <div className="border-t border-white/6" />
         </div>
       </div>
     </section>

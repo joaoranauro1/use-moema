@@ -8,7 +8,6 @@ import { ManifestoSection } from "@/components/sections/ManifestoSection";
 import { ResidencesSection } from "@/components/sections/ResidencesSection";
 import { InvestmentSection } from "@/components/sections/InvestmentSection";
 import { AmenitiesSection } from "@/components/sections/AmenitiesSection";
-import { ArchitectureSection } from "@/components/sections/ArchitectureSection";
 import { LocationSection } from "@/components/sections/LocationSection";
 import { InterestModal } from "@/components/ui/InterestModal";
 
@@ -25,7 +24,6 @@ export default function Home() {
         <ResidencesSection />
         <InvestmentSection />
         <AmenitiesSection onInterestClick={() => setInterestOpen(true)} />
-        <ArchitectureSection onInterestClick={() => setInterestOpen(true)} />
       </main>
       <Footer />
       <InterestModal
