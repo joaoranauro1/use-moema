@@ -11,9 +11,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TYPOLOGIES = [
   { type: "Studio", area: "20", unit: "m²" },
-  { type: "Studio Plus", area: "28", unit: "m²" },
-  { type: "Compacto", area: "38", unit: "m²" },
-  { type: "Compacto Plus", area: "56", unit: "m²" },
+  { type: "1 Dormitório", area: "35", unit: "m²" },
+  { type: "1 Dormitório", area: "42", unit: "m²" },
+  { type: "Double Suíte", area: "56", unit: "m²" },
 ];
 
 export function ResidencesSection() {
@@ -121,7 +121,7 @@ export function ResidencesSection() {
           <div className="lg:col-span-7 lg:pt-4">
             {TYPOLOGIES.map((t, i) => (
               <motion.div
-                key={t.type}
+                key={`${t.type}-${t.area}`}
                 className="typo-row group flex items-baseline justify-between border-t border-steel-10 py-6 md:py-8 cursor-default"
                 whileHover={{ x: 8 }}
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}

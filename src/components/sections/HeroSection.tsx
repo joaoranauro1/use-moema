@@ -94,7 +94,7 @@ export function HeroSection() {
               },
             }}
           >
-            Compactos sofisticados da nova geração.
+            O auge da sofisticação dos compactos.
           </motion.p>
 
           <motion.p
@@ -108,7 +108,7 @@ export function HeroSection() {
               },
             }}
           >
-            Moema, São Paulo
+            Moema, São Paulo — 100% R2V
           </motion.p>
         </motion.div>
 
