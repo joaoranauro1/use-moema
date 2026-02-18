@@ -77,6 +77,7 @@ export function ResidencesSection() {
           fill
           className="object-cover"
           sizes="100vw"
+          priority
         />
       </div>
 

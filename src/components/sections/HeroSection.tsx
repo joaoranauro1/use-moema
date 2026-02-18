@@ -24,7 +24,7 @@ export function HeroSection() {
           trigger: sectionRef.current,
           start: "top top",
           end: "bottom top",
-          scrub: true,
+          scrub: 1.5,
         },
       });
     },
@@ -44,6 +44,8 @@ export function HeroSection() {
         loop
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
+        style={{ willChange: "transform" }}
+        poster="/images/hero-poster.webp"
       >
         <source src="/videos/hero.webm" type="video/webm" />
       </video>
