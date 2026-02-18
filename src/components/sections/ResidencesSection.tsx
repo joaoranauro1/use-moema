@@ -18,27 +18,38 @@ const TYPOLOGIES = [
 
 export function ResidencesSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
+  const imageInnerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       if (!sectionRef.current) return;
 
-      // Image clip reveal
-      if (imageRef.current) {
-        gsap.fromTo(
-          imageRef.current,
-          { clipPath: "inset(15% 15% 15% 15%)" },
-          {
-            clipPath: "inset(0% 0% 0% 0%)",
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: imageRef.current,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: true,
-            },
-          }
+      // GPU-accelerated counter-scale reveal
+      // Outer wrapper scales 0.87→1 (expands visible frame)
+      // Inner wrapper counter-scales 1.15→1 (keeps image visually stable)
+      if (imageWrapperRef.current && imageInnerRef.current) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: imageWrapperRef.current,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: 1.5,
+          },
+        });
+
+        tl.fromTo(
+          imageWrapperRef.current,
+          { scale: 0.87 },
+          { scale: 1, ease: "none" },
+          0
+        );
+
+        tl.fromTo(
+          imageInnerRef.current,
+          { scale: 1.15 },
+          { scale: 1, ease: "none" },
+          0
         );
       }
 
@@ -66,19 +77,24 @@ export function ResidencesSection() {
 
   return (
     <section ref={sectionRef} id="residencias" className="relative bg-white">
-      {/* Full-bleed image with clip-path reveal */}
+      {/* Full-bleed image with GPU-accelerated scale reveal */}
       <div
-        ref={imageRef}
+        ref={imageWrapperRef}
         className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden"
       >
-        <Image
-          src="/images/residences/fachada.webp"
-          alt="Interior residência use.moema"
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
+        <div
+          ref={imageInnerRef}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/images/residences/fachada.webp"
+            alt="Interior residência use.moema"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1200px) 100vw, 1920px"
+            priority
+          />
+        </div>
       </div>
 
       {/* Content area */}
