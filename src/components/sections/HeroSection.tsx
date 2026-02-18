@@ -45,7 +45,6 @@ export function HeroSection() {
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
         style={{ willChange: "transform" }}
-        poster="/images/hero-poster.webp"
       >
         <source src="/videos/hero.webm" type="video/webm" />
       </video>
