@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger);
 const TYPOLOGIES = [
   { type: "Studio", area: "20", unit: "m²" },
   { type: "1 Dormitório", area: "35", unit: "m²" },
-  { type: "1 Dormitório", area: "42", unit: "m²" },
-  { type: "Double Suíte", area: "56", unit: "m²" },
+  { type: "1 Dormitório Plus", area: "42", unit: "m²" },
+  { type: "Double Suite", area: "56", unit: "m²" },
 ];
 
 export function ResidencesSection() {
