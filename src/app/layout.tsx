@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     "investimento imobiliário",
     "prédio boutique",
   ],
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "use.moema — Compactos Sofisticados da Nova Geração",
     description:
