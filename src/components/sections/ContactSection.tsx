@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/Button";
+import { submitLead } from "@/lib/leads";
 
 interface FormData {
   name: string;
@@ -14,6 +15,7 @@ interface FormData {
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -21,9 +23,20 @@ export function ContactSection() {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    await new Promise((r) => setTimeout(r, 1000));
-    console.log("Form submitted:", data);
-    setSubmitted(true);
+    setSubmitError(null);
+    const result = await submitLead({
+      source: "formulario_contato",
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      message: data.message || undefined,
+    });
+
+    if (result.success) {
+      setSubmitted(true);
+    } else {
+      setSubmitError(result.error ?? "Erro ao enviar. Tente novamente.");
+    }
   };
 
   const inputClasses =
@@ -133,6 +146,12 @@ export function ContactSection() {
                       className={`${inputClasses} resize-none`}
                     />
                   </div>
+
+                  {submitError && (
+                    <p className="text-sm text-red-500 bg-red-50 border border-red-100 rounded px-4 py-3">
+                      {submitError}
+                    </p>
+                  )}
 
                   <div className="pt-4">
                     <Button

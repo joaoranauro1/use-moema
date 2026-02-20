@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
+import { submitLead } from "@/lib/leads";
 
 /* ─── Types ─── */
 interface InterestModalProps {
@@ -95,6 +96,7 @@ export function InterestModal({ open, onClose }: InterestModalProps) {
   const [direction, setDirection] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
   const {
@@ -142,6 +144,7 @@ export function InterestModal({ open, onClose }: InterestModalProps) {
       setDirection(1);
       setSubmitted(false);
       setIsSubmitting(false);
+      setSubmitError(null);
       reset();
     }, 300);
   }, [onClose, reset]);
@@ -198,10 +201,24 @@ export function InterestModal({ open, onClose }: InterestModalProps) {
   // Submit
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    console.log("Interest form submitted:", data);
+    setSubmitError(null);
+
+    const result = await submitLead({
+      source: "modal_interesse",
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      motivation: data.motivation,
+      budget: data.budget,
+    });
+
     setIsSubmitting(false);
-    setSubmitted(true);
+
+    if (result.success) {
+      setSubmitted(true);
+    } else {
+      setSubmitError(result.error ?? "Erro ao enviar. Tente novamente.");
+    }
   };
 
   if (!mounted) return null;
@@ -509,6 +526,15 @@ export function InterestModal({ open, onClose }: InterestModalProps) {
                         )}
                       </AnimatePresence>
                     </div>
+
+                    {/* Error banner */}
+                    {submitError && (
+                      <div className="mx-8 mb-2">
+                        <p className="text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded px-4 py-3">
+                          {submitError}
+                        </p>
+                      </div>
+                    )}
 
                     {/* Footer buttons */}
                     <div className="flex items-center justify-between px-8 pb-8 pt-2">
