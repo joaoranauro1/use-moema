@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = localFont({
   src: [
@@ -51,6 +52,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${inter.variable} font-sans antialiased`}>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
